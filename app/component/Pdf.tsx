@@ -29,17 +29,33 @@ const PdfList = [
 	{name:'pdf2', document:"https://s29.q4cdn.com/175625835/files/doc_downloads/test.pdf"},
 ]
 
-const PdfView = () =>{
+const PdfView = () => {
 	const [document, setDocument] = useState("");
-
-	return (<>
-	<div>{PdfList.map(({name, document})=><div key={name} onMouseDown={()=>setDocument('')} onClick={()=>{
-        
-        setTimeout(()=>{
-            setDocument(document)
-        },1000)
-        }}>{name}</div>)}</div>
-	{document && <Index  document={document}/>}
-	</>)
-}
-export default PdfView
+  
+	return (
+	  <>
+		<div>
+		  {PdfList.map(({ name, document }) => (
+			<button
+			  style={{
+				padding: "12px",
+				background: "burlywood",
+			  }}
+			  key={name}
+			  onMouseDown={() => setDocument("")}
+			  onClick={() => {
+				setTimeout(() => {
+				  setDocument(document);
+				}, 1000);
+			  }}
+			>
+			  {name}
+			</button>
+		  ))}
+		</div>
+		{document && <Index document={document} />}
+	  </>
+	);
+  };
+  export default PdfView;
+  
